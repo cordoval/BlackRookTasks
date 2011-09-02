@@ -1,0 +1,3 @@
+[submodule "src/BlackRook/TaskBundle"]
+	path = src/BlackRook/TaskBundle
+	url = git@github.com:leevigraham/BlackRookTask.bundle.git
