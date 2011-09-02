@@ -1,0 +1,33 @@
+{% if tasks %}
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Assigned to</th>
+            <th>Start At</th>
+            <th>Completed At</th>
+            <th>Due At</th>
+            <th>Lft</th>
+            <th>Rgt</th>
+            <th>Root</th>
+            <th>Lvl</th>
+            <th>Project</th>
+            <th>Activities</th>
+            <th>Estimated duration</th>
+            <th>Duration</th>
+            <th>Duration in hrs</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for task in tasks %}
+        {% include 'BlackRookTaskBundle:Task:_partials/_taskTableRow.html.twig' with {'task': task, 'depth': 0} %}
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="no-results">No tasks</p>
+{% endif %}

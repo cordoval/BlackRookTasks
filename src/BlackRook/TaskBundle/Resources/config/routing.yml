@@ -1,0 +1,15 @@
+black_rook_projects:
+    resource: BlackRook\TaskBundle\Controller\ProjectController
+
+backrook_tasks:
+    type: rest
+    resource: BlackRook\TaskBundle\Controller\TaskController
+
+black_rook_activities:
+    resource: BlackRook\TaskBundle\Controller\ActivityController
+
+black_rook_reports:
+    resource: BlackRook\TaskBundle\Controller\ReportController
+
+black_rook_tags:
+    resource: BlackRook\TaskBundle\Controller\TagController

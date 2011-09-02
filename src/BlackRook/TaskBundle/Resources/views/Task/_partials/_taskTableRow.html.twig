@@ -1,0 +1,41 @@
+<tr data-taskId="{{task.id}}">
+    <td>
+        <!-- form action="{{ path('toggle_task', { 'id': task.id }) }}" method="post" -->
+             <!-- input type="hidden" name="_method" value="PUT" / -->
+            <input type="checkbox" {% if task.completedAt %}checked{% endif %} />
+            <!-- input type="submit" / -->
+        <!-- /form -->
+    </td>
+    <td><a href="{{ path('get_task', { 'id': task.id }) }}">{{ task.id }}</a></td>
+    <td {% if depth > 0 %}style='padding-left:{{ depth * 20 }}px'{% endif %}>{{ task.name }}</td>
+    <td>{{ task.description }}</td>
+    <td>{% for user in task.assignees %}
+        {{ user.username }}
+        {% if loop.last == false %},{% endif %}
+        {% endfor %}
+    </td>
+    <td>{% if task.startAt %}{{ task.startAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+    <td>{% if task.completedAt %}{{ task.completedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+    <td>{% if task.dueAt %}{{ task.dueAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+    <td>{{ task.lft }}</td>
+    <td>{{ task.rgt }}</td>
+    <td>{{ task.root }}</td>
+    <td>{{ task.lvl }}</td>
+    <td>
+        {% if task.project %}
+            <a href="{{ path('project_show', { 'id': task.project.id }) }}">{{ task.project.name }}<a> 
+        {% endif %}
+    </td>
+    <td>{{ task.activities.count }}</td>
+    <td>{{ task.estimatedDuration|secondsToHuman }}</td>
+    <td>{{ task.duration }}</td>
+    <td>{{ task.duration|secondsToHuman() }}</td>
+    <td>
+        <a href="{{ path('edit_task', { 'id': task.id }) }}">Edit</a> | 
+        <a href="{{ path('remove_task', { 'id': task.id }) }}">Delete</a>
+    </td>
+</tr>
+
+{% for child in task.children %}
+    {% include 'BlackRookTaskBundle:Task:_partials/_taskTableRow.html.twig' with {'task': child, 'depth': depth + 1} %}
+{% endfor %}

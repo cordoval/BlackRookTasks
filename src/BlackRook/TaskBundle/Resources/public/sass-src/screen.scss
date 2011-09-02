@@ -1,0 +1,57 @@
+@import "_base";
+
+html {font-family:sans-serif; font-size:12px;}
+  table {border-collapse:collapse; margin:18px 0;}
+  table tbody tr:nth-child(2n+1){background:#fcfcfc}
+  td, th{padding:6px; border:1px solid #ccc;}
+  form.entity{border:1px solid #aaa;}
+  form.entity > div{border-bottom:1px dotted #ccc; padding:5px 9px; overflow:auto}
+
+  div label {float:left; width:100px;}
+  div label + * {float:left}
+  div:last-child{border-bottom:0}
+
+  div[data-prototype] > div {
+      background:#f2f2f2;
+      border:1px solid #ccc;
+      margin:5px 0 9px 0;
+      position:relative;
+  }
+  div[data-prototype] > div > label {
+      position:absolute; top:0px; right:9px; font-size:72px; width:auto; font-weight:bold; color:rgba(0,0,0,.1);
+  }
+  div[data-prototype] > div > div > div {
+      border-bottom:1px dotted #ccc;
+      padding:5px 9px;
+  }
+  a.delete, a.add {
+      display:inline-block;
+      border:1px solid #333;
+      padding:5px 9px;
+      margin:5px 0;
+      text-decoration:none;
+      -webkit-border-radius:3px;
+      color:#fff;
+  }
+  a.add{background:green;}
+  a.delete {margin:5px; background:red;}
+  
+  form.delete{
+      background:red;
+      padding:5px;
+      margin:18px 0;
+  }
+  
+  thead {background:#eee}
+  .actions {background:#eee}
+
+.no-results{
+    background: rgba(255, 249, 1, .2);
+    padding:9px;
+    border:1px solid #ddd;
+}
+input[type=text],
+input[type=number],
+input[type=password],
+textarea {width:200px; padding:5px; border:1px solid #aaa;}
+textarea {height:100px;}

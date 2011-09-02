@@ -1,0 +1,10 @@
+{% extends 'BlackRookTaskBundle::layout.html.twig' %}
+{% block body %}
+<h1>Task edit</h1>
+
+<form action="{{ path('put_task') }}" method="post" {{ form_enctype(edit_form) }}>
+	<input type="hidden" name="_method" value="put" />
+	{{ form_widget(edit_form) }}
+    <p><button type="submit">Edit</button></p>
+</form>
+{% endblock body %}

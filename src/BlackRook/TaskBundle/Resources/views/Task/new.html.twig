@@ -1,0 +1,14 @@
+{% extends 'BlackRookTaskBundle::layout.html.twig' %}
+{% block body %}
+
+<h1>Task creation</h1>
+
+<form class="entity" action="{{ path('post_tasks') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+    {{ form_rest(form) }}
+    <div class="actions">
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+{% endblock body %}

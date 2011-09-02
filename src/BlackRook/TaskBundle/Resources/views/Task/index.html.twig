@@ -1,0 +1,15 @@
+{% extends 'BlackRookTaskBundle::layout.html.twig' %}
+{% block body %}
+
+<h1>Tasks <small>&mdash; <a href="{{ path('new_tasks') }}">Create</a></small></h1>
+
+<h2>All tasks</h2>
+{% include 'BlackRookTaskBundle:Task:_partials/_taskTable.html.twig' with {'tasks': tasks} %}
+
+<h2>Completed Tasks</h2>
+{% include 'BlackRookTaskBundle:Task:_partials/_taskTable.html.twig' with {'tasks': tasksCompleted} %}
+
+<h2>Uncompleted Tasks</h2>
+{% include 'BlackRookTaskBundle:Task:_partials/_taskTable.html.twig' with {'tasks': tasksUncompleted} %}
+
+{% endblock %}

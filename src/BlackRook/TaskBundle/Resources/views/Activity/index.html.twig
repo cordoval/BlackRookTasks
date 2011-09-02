@@ -1,0 +1,7 @@
+{% extends 'BlackRookTaskBundle::layout.html.twig' %}
+{% block body %}
+
+<h1>Activities <small>&mdash; <a href="{{ path('activity_new') }}">Create</a></small></h1>
+{% include 'BlackRookTaskBundle:Activity:_partials/_activityTable.html.twig' with {'activities': activities} %}
+
+{% endblock %}

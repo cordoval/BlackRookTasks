@@ -1,0 +1,12 @@
+{% extends 'BlackRookTaskBundle::layout.html.twig' %}
+{% block body %}
+
+<h1>Task remove</h1>
+
+<form class="delete" action="{{ path('delete_task', { 'id': entity.id }) }}" method="post">
+    <input type="hidden" name="_method" value="DELETE" />
+    {{ form_widget(delete_form) }}
+    <button type="submit">Delete Task</button>
+</form>
+
+{% endblock body %}

@@ -1,0 +1,21 @@
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Task</th>
+            <th>User</th>
+            <th>Started at</th>
+            <th>Description</th>
+            <th>Time spent</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+            <th>Toggle</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for activity in activities %}
+        {% include 'BlackRookTaskBundle:Activity:_partials/_activityTableRow.html.twig' with {'activity': activity, 'depth': 0} %}
+    {% endfor %}
+    </tbody>
+</table>

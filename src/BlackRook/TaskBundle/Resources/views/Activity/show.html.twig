@@ -1,0 +1,56 @@
+{% extends 'BlackRookTaskBundle::layout.html.twig' %}
+{% block body %}
+
+<h1>Activity <small>&mdash; <a href="{{ path('activity_edit', { 'id': entity.id }) }}">Edit</a></small></h1>
+<p>
+    <a href="{{ path('activity_toggle', { 'id': entity.id }) }}">{% if entity.startedAt is none %}Start{% else %}Stop{% endif %}</a>
+</p>
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Task</th>
+            <td>
+                {% if entity.task is not empty %}
+                <a href="{{ path('get_task', { 'id': entity.task.id }) }}">{{ entity.task.name }}</a>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>User</th>
+            <td>
+                {% if entity.user is not empty %}{{ entity.user.username }}{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Started at</th>
+            <td>{% if entity.startedAt %}{{ entity.startedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ entity.description }}</td>
+        </tr>
+        <tr>
+            <th>Timespent</th>
+            <td>{{ entity.duration }}</td>
+        </tr>
+        <tr>
+            <th>Createdat</th>
+            <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Updatedat</th>
+            <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<form class="delete" action="{{ path('activity_delete', { 'id': entity.id }) }}" method="post">
+    {{ form_widget(delete_form) }}
+    <button type="submit">Delete Activity</button>
+</form>
+{% endblock %}

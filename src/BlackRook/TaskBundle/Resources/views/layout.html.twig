@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}BlackRook Tasks{% endblock %}</title>
+
+        {% stylesheets 
+			'@BlackRookTaskBundle/Resources/public/css/screen.css'
+			'@BlackRookTaskBundle/Resources/public/libs/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css'
+		%}
+        <link rel="stylesheet" href="{{asset_url}}" type="text/css" media="screen">
+        {% endstylesheets %}
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+
+        <div style="position:fixed; top:9px; right:9px;">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>
+        {% else %}
+            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+        {% endif %}
+        </div>
+
+		<p>
+		    <a href="{{ path('project') }}">Projects</a>
+			<a href="{{ path('get_tasks') }}">Tasks</a>
+			<a href="{{ path('activity') }}">Activities</a>
+			<a href="{{ path('report') }}">Reports</a>
+			<a href="{{ path('tag') }}">Tags</a>
+		</p>
+
+        {% for key, message in app.session.getFlashes() %}
+        <div class="{{ key }}">
+            {{ message|trans({}, 'FOSUserBundle') }}
+        </div>
+        {% endfor %}
+
+        {% block body %}
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        {% endblock %}
+
+        {% block javascripts %}{% endblock %}
+        
+        {% javascripts 
+			'@BlackRookTaskBundle/Resources/public/libs/jquery-ui-1.8.16.custom/js/jquery-1.6.2.min.js'
+			'@BlackRookTaskBundle/Resources/public/libs/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js'
+			'@BlackRookTaskBundle/Resources/public/libs/jquery-ui-timepicker-addon.js'
+			'@BlackRookTaskBundle/Resources/public/js/data-prototype.js'
+		%}
+		<script src="{{asset_url}}" type="text/javascript" charset="utf-8"></script>
+        {% endjavascripts %}
+		<script type="text/javascript" charset="utf-8">
+			$(".tabs").tabs();
+			$(".date").datetimepicker({
+				"dateFormat": 'yy-mm-dd',
+				"timeFormat": 'hh:mm:ss'
+				
+			});
+		</script>
+
+    </body>
+</html>

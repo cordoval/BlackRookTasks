@@ -1,0 +1,22 @@
+{% block field_row %}
+    <div class="ft">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endblock field_row %}
+
+
+{% block field_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <div class="alert-message block-message error">
+        <ul>
+            {% for error in errors %}
+                <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock field_errors %}

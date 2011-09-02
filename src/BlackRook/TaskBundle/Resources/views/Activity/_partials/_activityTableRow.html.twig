@@ -1,0 +1,24 @@
+<tr>
+    <td><a href="{{ path('activity_show', { 'id': activity.id }) }}">{{ activity.id }}</a></td>
+    <td>
+        {% if activity.task is not empty %}
+            <a href="{{ path('get_task', { 'id': activity.task.id }) }}">
+                {{ activity.task.name }}
+            </a>
+        {% endif %}
+    </td>
+    <td>
+        {% if activity.user is not empty %}
+            {{ activity.user.username }}
+        {% endif %}
+    </td>
+    <td>{% if activity.startedAt %}{{ activity.startedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+    <td>{{ activity.description }}</td>
+    <td>{{ activity.duration|secondsToHuman }}</td>
+    <td>{{ activity.createdAt|date('Y-m-d H:i:s') }}</td>
+    <td>{{ activity.updatedAt|date('Y-m-d H:i:s') }}</td>
+    <td><a href="{{ path('activity_toggle', { 'id': activity.id }) }}">{% if activity.startedAt is none %}Start{% else %}Stop{% endif %}</a></td>
+    <td>
+        <a href="{{ path('activity_edit', { 'id': activity.id }) }}">Edit</a>
+    </td>
+</tr>
